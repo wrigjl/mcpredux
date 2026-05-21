@@ -1,13 +1,24 @@
 #!/usr/bin/env python3
 from mcp.server.fastmcp import FastMCP
 from typing import Optional
+import argparse
 import httpx
 import json
 
-REDUX_BASE = "http://localhost:27000"
+def _parse_args():
+    parser = argparse.ArgumentParser(description="Redux algorithms MCP server")
+    parser.add_argument(
+        "--base-url",
+        default="http://redux.portneuf.cose.isu.edu:27000",
+        metavar="URL",
+        help="Base URL of the Redux API server (default: %(default)s)",
+    )
+    return parser.parse_args()
+
+_args = _parse_args()
 
 mcp = FastMCP("redux")
-_client = httpx.AsyncClient(base_url=REDUX_BASE, timeout=30.0)
+_client = httpx.AsyncClient(base_url=_args.base_url, timeout=30.0)
 
 
 async def _get(path: str, params: dict = None) -> str:
