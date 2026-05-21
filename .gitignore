@@ -1,2 +1,4 @@
 mcp-weather-server/
-target/
+.venv/
+__pycache__/
+*.pyc
