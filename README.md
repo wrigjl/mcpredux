@@ -24,15 +24,14 @@ problems including NP-Complete, NP-Hard, and P-class problems.
 | `map_solution` | Map a solution from the reduced problem back to the original |
 | `visualize_problem` | Get the visualization of a problem instance |
 
-## Building
+## Setup
 
-Requires Rust 1.70+.
+Requires Python 3.10+.
 
 ```sh
-cargo build --release
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
 ```
-
-The binary will be at `target/release/mcp-redux-server`.
 
 ## Configuration
 
@@ -42,7 +41,8 @@ Add to your `claude_desktop_config.json` (`~/Library/Application Support/Claude/
 {
   "mcpServers": {
     "redux": {
-      "command": "/path/to/mcpredux/target/release/mcp-redux-server"
+      "command": "/path/to/mcpredux/.venv/bin/python",
+      "args": ["/path/to/mcpredux/server.py"]
     }
   }
 }
@@ -50,7 +50,5 @@ Add to your `claude_desktop_config.json` (`~/Library/Application Support/Claude/
 
 ## Dependencies
 
-- [rmcp](https://github.com/modelcontextprotocol/rust-sdk) — official Rust MCP SDK
-- [reqwest](https://github.com/seanmonstar/reqwest) — HTTP client
-- [tokio](https://tokio.rs) — async runtime
-- [serde](https://serde.rs) — JSON serialization
+- [mcp](https://github.com/modelcontextprotocol/python-sdk) — official Python MCP SDK (FastMCP)
+- [httpx](https://www.python-httpx.org) — async HTTP client
