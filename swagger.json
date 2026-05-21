@@ -1,0 +1,4365 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Redux API",
+    "description": "An ASP.NET Core Web API for reducing, verifying, and solving NP-Complete problems",
+    "version": "v1"
+  },
+  "paths": {
+    "/Navigation/ContributorProfile/{contributorName}": {
+      "get": {
+        "tags": [
+          "- Navigation (Contributor Profile)"
+        ],
+        "parameters": [
+          {
+            "name": "contributorName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributorPortfolio"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributorPortfolio"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributorPortfolio"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/ContributorProfile/all": {
+      "get": {
+        "tags": [
+          "- Navigation (Contributor Profile)"
+        ],
+        "summary": "Get a list of all contributors in the system",
+        "responses": {
+          "200": {
+            "description": "Successfully returns the list of all contributor names",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/ALL_ProblemsRefactor": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns all problems",
+        "responses": {
+          "200": {
+            "description": "Returns string array of all problems regardless of class",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/ALL_ProblemsRefactor/json": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns all problems",
+        "responses": {
+          "200": {
+            "description": "Returns string array of all problems regardless of class",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/NPC_ProblemsRefactor": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns all NP-Complete problems",
+        "responses": {
+          "200": {
+            "description": "Returns string array of all NP-Complete problems",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/NPC_ProblemsRefactor/json": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns all NP-Complete problems",
+        "responses": {
+          "200": {
+            "description": "Returns json dictionary of all NP-Complete problems",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/P_ProblemsRefactor": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns all P-Class problems",
+        "responses": {
+          "200": {
+            "description": "Returns string array of all NP-Complete problems",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/P_ProblemsRefactor/json": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns all P-Class problems",
+        "responses": {
+          "200": {
+            "description": "Returns json dictionary of all NP-Complete problems",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/NPHard_ProblemsRefactor": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns all NPHard problems",
+        "responses": {
+          "200": {
+            "description": "Returns string array of all NP-Complete problems",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/NPHard_ProblemsRefactor/json": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns all NPHard problems",
+        "responses": {
+          "200": {
+            "description": "Returns json dictionary of all NP-Complete problems",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/NPC_NavGraph/info": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns graph of all NP-Complete problems connected through reductions",
+        "responses": {
+          "200": {
+            "description": "Returns json graph of all NP-Complete problems connected through reductions",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/NPC_NavGraph/availableReductions": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns all problems reachable from given problem via reductions",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "NP-Complete problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SAT3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of NP-Complete problems",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/NPC_NavGraph/reductionPath": {
+      "get": {
+        "tags": [
+          "- Navigation (Problems)"
+        ],
+        "summary": "Returns reduction path from a given problem to another given problem",
+        "parameters": [
+          {
+            "name": "reducingFrom",
+            "in": "query",
+            "description": "NP-Complete problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SAT3"
+          },
+          {
+            "name": "reducingTo",
+            "in": "query",
+            "description": "NP-Complete problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "ARCSET"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of NP-Complete reductions",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/All_Reductions": {
+      "get": {
+        "tags": [
+          "- Navigation (Reductions)"
+        ],
+        "summary": "Returns list of all available problem types",
+        "responses": {
+          "200": {
+            "description": "Returns string array of problem types",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/NPC_Reductions": {
+      "get": {
+        "tags": [
+          "- Navigation (Reductions)"
+        ],
+        "summary": "Returns all NP-Complete problems",
+        "responses": {
+          "200": {
+            "description": "Returns string array of all NP-Complete problems",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/Problem_Reductions": {
+      "get": {
+        "tags": [
+          "- Navigation (Reductions)"
+        ],
+        "summary": "Returns all problems which a given problem directly reduces to",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC_SAT3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of problems",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/Problem_ReductionsRefactor": {
+      "get": {
+        "tags": [
+          "- Navigation (Reductions)"
+        ],
+        "summary": "Returns all problems which a given  problem directly reduces to",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SAT3"
+          },
+          {
+            "name": "problemType",
+            "in": "query",
+            "description": "Problem type",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of problems",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/PossibleReductions": {
+      "get": {
+        "tags": [
+          "- Navigation (Reductions)"
+        ],
+        "summary": "Returns al list of reductions from a given problem to another given problem",
+        "parameters": [
+          {
+            "name": "reducingFrom",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC_SAT3"
+          },
+          {
+            "name": "reducingTo",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC_CLIQUE"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of reductions",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/PossibleReductionsRefactor": {
+      "get": {
+        "tags": [
+          "- Navigation (Reductions)"
+        ],
+        "summary": "Returns al list of reductions from a given problem to another given problem",
+        "parameters": [
+          {
+            "name": "reducingFrom",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SAT3"
+          },
+          {
+            "name": "reducingTo",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CLIQUE"
+          },
+          {
+            "name": "problemType",
+            "in": "query",
+            "description": "Problem type",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of reductions",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/Reverse_Reductions": {
+      "get": {
+        "tags": [
+          "- Navigation (Reductions)"
+        ],
+        "parameters": [
+          {
+            "name": "chosenReduction",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/Problem_Solvers": {
+      "get": {
+        "tags": [
+          "- Navigation (Solvers)"
+        ],
+        "summary": "Returns all solvers available for a given problem",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC_SAT3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of solvers",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/Problem_SolversRefactor": {
+      "get": {
+        "tags": [
+          "- Navigation (Solvers)"
+        ],
+        "summary": "Returns all solvers available for a given problem",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SAT3"
+          },
+          {
+            "name": "problemType",
+            "in": "query",
+            "description": "Problem type",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of solvers",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/All_Verifiers": {
+      "get": {
+        "tags": [
+          "- Navigation (Verifiers)"
+        ],
+        "summary": "Returns all verifiers available for a given problem",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC_SAT3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of verifiers",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/Problem_Verifiers": {
+      "get": {
+        "tags": [
+          "- Navigation (Verifiers)"
+        ],
+        "summary": "Returns all verifiers available for a given problem",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC_SAT3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of verifiers",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/Problem_VerifiersRefactor": {
+      "get": {
+        "tags": [
+          "- Navigation (Verifiers)"
+        ],
+        "summary": "Returns all verifiers available for a given problem",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SAT3"
+          },
+          {
+            "name": "problemType",
+            "in": "query",
+            "description": "Problem type",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of verifiers",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/All_Visualizations": {
+      "get": {
+        "tags": [
+          "- Navigation (Visualizations)"
+        ],
+        "summary": "Returns all Visualizations available for a given problem",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC_SAT3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of Visualizations",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/Problem_Visualizations": {
+      "get": {
+        "tags": [
+          "- Navigation (Visualizations)"
+        ],
+        "summary": "Returns all Visualizations available for a given problem",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC_SAT3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of Visualizations",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Navigation/Problem_VisualizationsRefactor": {
+      "get": {
+        "tags": [
+          "- Navigation (Visualizations)"
+        ],
+        "summary": "Returns all Visualizations available for a given problem",
+        "parameters": [
+          {
+            "name": "chosenProblem",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SAT3"
+          },
+          {
+            "name": "problemType",
+            "in": "query",
+            "description": "Problem type",
+            "schema": {
+              "type": "string"
+            },
+            "example": "NPC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string array of Visualizations",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemGenerator/UndirectedGraph": {
+      "get": {
+        "tags": [
+          "-Problem Generator"
+        ],
+        "summary": "Returns a random undirected graph with a k value, for NP-Complete problems with undirected graph input",
+        "parameters": [
+          {
+            "name": "n",
+            "in": "query",
+            "description": "Nodes in graph",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5
+            },
+            "example": 5
+          },
+          {
+            "name": "density",
+            "in": "query",
+            "description": "Density of edges",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          },
+          {
+            "name": "k",
+            "in": "query",
+            "description": "k value for NP-Complete problem, -1 if no k value wanted",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": -1
+            },
+            "example": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string graph NP Complete problem instance, <G,k>",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemGenerator/DirectedGraph": {
+      "get": {
+        "tags": [
+          "-Problem Generator"
+        ],
+        "summary": "Returns a random graph with a k value, for NP-Complete problems with graph input",
+        "parameters": [
+          {
+            "name": "n",
+            "in": "query",
+            "description": "Nodes in graph",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5
+            },
+            "example": 5
+          },
+          {
+            "name": "density",
+            "in": "query",
+            "description": "Density of edges",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            },
+            "example": 50
+          },
+          {
+            "name": "k",
+            "in": "query",
+            "description": "k value for NP-Complete problem, -1 if no k value wanted",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": -1
+            },
+            "example": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string graph NP Complete problem instance, <G,k>",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemGenerator/Sat3": {
+      "get": {
+        "tags": [
+          "-Problem Generator"
+        ],
+        "summary": "Returns a random problem input for 3SAT",
+        "parameters": [
+          {
+            "name": "n",
+            "in": "query",
+            "description": "Variables in problem",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            },
+            "example": 3
+          },
+          {
+            "name": "c",
+            "in": "query",
+            "description": "Number of clauses",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            },
+            "example": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns string instance of a 3SAT problem;",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SipserReduceToCliqueStandard/info": {
+      "get": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a reduction object with info for Sipser's 3SAT to Clique reduction",
+        "responses": {
+          "200": {
+            "description": "Returns SipserReduction object",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_CLIQUE.SipserReduceToCliqueStandard"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_CLIQUE.SipserReduceToCliqueStandard"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_CLIQUE.SipserReduceToCliqueStandard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SipserReduceToCliqueStandard/reduce": {
+      "post": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a reduction from 3SAT to Clique based on the given 3SAT instance",
+        "requestBody": {
+          "description": "3SAT problem instance string.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns Sipser's 3SAT to Clique SipserReduction object",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_CLIQUE.SipserReduceToCliqueStandard"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_CLIQUE.SipserReduceToCliqueStandard"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_CLIQUE.SipserReduceToCliqueStandard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SipserReduceToCliqueStandard/mapSolution": {
+      "post": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a solution to the a Clique problem, wich has been reduced from 3SAT using Sipser's reduction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns solution to the reduced Clique instance",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SipserReduceToCliqueStandard/reverseMappedSolution": {
+      "post": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a solution to the a 3SAT problem, based on a Sipser's redution Clique solution.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns solution to the reduced Clique instance",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/KarpReduceGRAPHCOLORING/info": {
+      "get": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a reduction object with info for Karps's 3SAT to Graph Coloring reduction",
+        "responses": {
+          "200": {
+            "description": "Returns KarpReduction object",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_GRAPHCOLORING.KarpReduceGRAPHCOLORING"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_GRAPHCOLORING.KarpReduceGRAPHCOLORING"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_GRAPHCOLORING.KarpReduceGRAPHCOLORING"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/KarpReduceGRAPHCOLORING/reduce": {
+      "post": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a reduction from 3SAT to Graph Coloring based on the given 3SAT instance",
+        "requestBody": {
+          "description": "3SAT problem instance string.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns Karp's 3SAT to Graph Coloring KarpReduction object",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_GRAPHCOLORING.KarpReduceGRAPHCOLORING"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_GRAPHCOLORING.KarpReduceGRAPHCOLORING"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_GRAPHCOLORING.KarpReduceGRAPHCOLORING"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/KarpIntProgStandard/info": {
+      "get": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a reduction object with info for Karps's 3SAT to 0-1 Integer Programming reduction",
+        "responses": {
+          "200": {
+            "description": "Returns KarpIntProgStandard object",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_INTPROGRAMMING01.KarpIntProgStandard"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_INTPROGRAMMING01.KarpIntProgStandard"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_INTPROGRAMMING01.KarpIntProgStandard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/KarpIntProgStandard/reduce": {
+      "post": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a reduction from 3SAT to 0-1 Integer Programming based on the given 3SAT instance",
+        "requestBody": {
+          "description": "3SAT problem instance string.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns Karps's 3SAT to 0-1 Integer Programming KarpIntProgStandard object",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_INTPROGRAMMING01.KarpIntProgStandard"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_INTPROGRAMMING01.KarpIntProgStandard"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_INTPROGRAMMING01.KarpIntProgStandard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/KarpIntProgStandard/mapSolution": {
+      "post": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a solution vector to the a 0-1 Integer Programming problem, wich has been reduced from 3SAT using Karp's reduction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns solution to the reduced 0-1 Integer Programming instance",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/GareyJohnson/info": {
+      "get": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a a reduction object with info for Garey and Johnsons's 3SAT to 3 Dimensional Matching reduction",
+        "responses": {
+          "200": {
+            "description": "Returns GareyJohnson Object",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_DM3.GareyJohnson"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_DM3.GareyJohnson"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_DM3.GareyJohnson"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/GareyJohnson/reduce": {
+      "post": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a reduction from 3SAT to 3 Dimensional Matching based on the given 3SAT instance",
+        "requestBody": {
+          "description": "3SAT problem instance string.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1|!x2|x3)&(!x1|x3|x1)&(x2|!x3|x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns Garey and Johnson's 3SAT to 3 DImensional Matching GareyJohnson object",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_DM3.GareyJohnson"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_DM3.GareyJohnson"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_DM3.GareyJohnson"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/GareyJohnson/mapSolution": {
+      "post": {
+        "tags": [
+          "3 SAT"
+        ],
+        "summary": "Returns a solution set to the 3 Dimensional Matching problem, wich has been reduced from 3SAT using Garey and Johnsons's reduction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/API.Tools.ApiParameters.MapSolution"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns solution to the reduced 0-1 Integer Programming instance",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemProvider/verify": {
+      "post": {
+        "tags": [
+          "Problem Provider"
+        ],
+        "summary": "Takes a problem instance, a solution certificate, and returns if that is a correct solution",
+        "parameters": [
+          {
+            "name": "verifier",
+            "in": "query",
+            "description": "the verifier to use",
+            "schema": {
+              "type": "string"
+            },
+            "example": "cliqueverifier"
+          }
+        ],
+        "requestBody": {
+          "description": "The certificate and problem instance",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Verify"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Verify"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Verify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemProvider/solve": {
+      "post": {
+        "tags": [
+          "Problem Provider"
+        ],
+        "summary": "Takes a problem instance and a solver and returns the soltuion",
+        "parameters": [
+          {
+            "name": "solver",
+            "in": "query",
+            "description": "The solver to use",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Sat3BacktrackingSolver"
+          }
+        ],
+        "requestBody": {
+          "description": "The instance of the problem to solve",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemProvider/info": {
+      "get": {
+        "tags": [
+          "Problem Provider"
+        ],
+        "summary": "Gets info about a particular object",
+        "parameters": [
+          {
+            "name": "interface",
+            "in": "query",
+            "description": "the name of the object to get the info of",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SAT3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { }
+              },
+              "application/json": {
+                "schema": { }
+              },
+              "text/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemProvider/problemInstance": {
+      "post": {
+        "tags": [
+          "Problem Provider"
+        ],
+        "summary": "Makes an instance of a problem from an instance string",
+        "parameters": [
+          {
+            "name": "problem",
+            "in": "query",
+            "description": "problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "3SAT"
+          }
+        ],
+        "requestBody": {
+          "description": "instance string",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Interfaces.IProblem"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Interfaces.IProblem"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/API.Interfaces.IProblem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemProvider/visualize": {
+      "post": {
+        "tags": [
+          "Problem Provider"
+        ],
+        "summary": "Gets the visualization of an object",
+        "parameters": [
+          {
+            "name": "visualization",
+            "in": "query",
+            "description": "The visualization to use",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Sat3DefaultVisualization"
+          }
+        ],
+        "requestBody": {
+          "description": "the instance of the problem",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemProvider/visualizeReduction": {
+      "post": {
+        "tags": [
+          "Problem Provider"
+        ],
+        "summary": "Reduces a problem and returns the visualization of the reduction",
+        "parameters": [
+          {
+            "name": "reduction",
+            "in": "query",
+            "description": "List of reductions to use, seperated by a dash. Can use a single reduction",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SipserReduceToCliqueStandard"
+          },
+          {
+            "name": "solution",
+            "in": "query",
+            "description": "The solution to visualize",
+            "schema": {
+              "type": "string"
+            },
+            "example": "(x1:True,x2:True)"
+          }
+        ],
+        "requestBody": {
+          "description": "the instance string of the problem",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemProvider/reduce": {
+      "post": {
+        "tags": [
+          "Problem Provider"
+        ],
+        "summary": "returns the reduction of a problem",
+        "parameters": [
+          {
+            "name": "reduction",
+            "in": "query",
+            "description": "the reduction to use",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SipserReduceToCliqueStandard"
+          }
+        ],
+        "requestBody": {
+          "description": "instance of a problem",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & !x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & !x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & !x1 | x3 | x1) & (x2 | !x3 | x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemProvider/mapSolution": {
+      "post": {
+        "tags": [
+          "Problem Provider"
+        ],
+        "summary": "Maps the solution from one problem to another",
+        "parameters": [
+          {
+            "name": "reduction",
+            "in": "query",
+            "description": "reduction to use",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SipserReduceToCliqueStandard"
+          },
+          {
+            "name": "solution",
+            "in": "query",
+            "description": "solution certificate",
+            "schema": {
+              "type": "string"
+            },
+            "example": "(x1:True)"
+          }
+        ],
+        "requestBody": {
+          "description": "instance of the problem",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemProvider/gadgets": {
+      "post": {
+        "tags": [
+          "Problem Provider"
+        ],
+        "summary": "Gets the gadget map of a reduction",
+        "parameters": [
+          {
+            "name": "reduction",
+            "in": "query",
+            "description": "reduction to use",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SipserReduceToCliqueStandard"
+          }
+        ],
+        "requestBody": {
+          "description": "the instance of the problem",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              },
+              "example": "(x1 | !x2 | x3) & (!x1 | x3 | x1) & (x2 | !x3 | x1)"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemTemplate": {
+      "get": {
+        "tags": [
+          "Problem Template"
+        ],
+        "summary": "Returns generated files zipped together for the user to implement.",
+        "parameters": [
+          {
+            "name": "problemName",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Traveling Sales Person"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the problem template with the given name.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemTemplate/reduction": {
+      "get": {
+        "tags": [
+          "Problem Template"
+        ],
+        "summary": "Returns generated files zipped together for the user to implement.",
+        "parameters": [
+          {
+            "name": "problemFrom",
+            "in": "query",
+            "description": "Reduce from problem",
+            "schema": {
+              "type": "string"
+            },
+            "example": "SAT3"
+          },
+          {
+            "name": "problemTo",
+            "in": "query",
+            "description": "Reduce to problem",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CLIQUE"
+          },
+          {
+            "name": "reductionName",
+            "in": "query",
+            "description": "Reduction name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Clique to 3 SAT reduction"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the reduction template with the given name.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemTemplate/solver": {
+      "get": {
+        "tags": [
+          "Problem Template"
+        ],
+        "summary": "Returns generated files zipped together for the user to implement.",
+        "parameters": [
+          {
+            "name": "problemName",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CLIQUE"
+          },
+          {
+            "name": "solverName",
+            "in": "query",
+            "description": "Solver name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "My Clique Solver"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the solver template with the given name.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemTemplate/verifier": {
+      "get": {
+        "tags": [
+          "Problem Template"
+        ],
+        "summary": "Returns generated files zipped together for the user to implement.",
+        "parameters": [
+          {
+            "name": "problemName",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CLIQUE"
+          },
+          {
+            "name": "verifierName",
+            "in": "query",
+            "description": "Verifier name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "My Clique Verifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the verifier template with the given name.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ProblemTemplate/visualization": {
+      "get": {
+        "tags": [
+          "Problem Template"
+        ],
+        "summary": "Returns generated files zipped together for the user to implement.",
+        "parameters": [
+          {
+            "name": "problemName",
+            "in": "query",
+            "description": "Problem name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "CLIQUE"
+          },
+          {
+            "name": "visualizationName",
+            "in": "query",
+            "description": "Visualization name",
+            "schema": {
+              "type": "string"
+            },
+            "example": "My Clique Visualization"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the visualization template with the given name.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ActionResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "API.DummyClasses.DummyVisualization": {
+        "type": "object",
+        "properties": {
+          "visualizationName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "visualizationDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "visualizationType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "solver": {
+            "$ref": "#/components/schemas/API.Interfaces.ISolver"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Interfaces.Graphs.Edge": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/API.Interfaces.Graphs.Node"
+          },
+          "target": {
+            "$ref": "#/components/schemas/API.Interfaces.Graphs.Node"
+          },
+          "weight": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Interfaces.Graphs.Node": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Interfaces.IProblem": {
+        "type": "object",
+        "properties": {
+          "problemName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "formalDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "wikiName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultInstance": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultSolver": {
+            "$ref": "#/components/schemas/API.Interfaces.ISolver"
+          },
+          "defaultVerifier": {
+            "$ref": "#/components/schemas/API.Interfaces.IVerifier"
+          },
+          "defaultVisualization": {
+            "$ref": "#/components/schemas/API.Interfaces.IVisualization"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Interfaces.ISolver": {
+        "type": "object",
+        "properties": {
+          "solverName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "solverDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "timerHasExpired": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Interfaces.IVerifier": {
+        "type": "object",
+        "properties": {
+          "verifierName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "verifierDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "certificate": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Interfaces.IVisualization": {
+        "type": "object",
+        "properties": {
+          "visualizationName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "visualizationDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "visualizationType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "solver": {
+            "$ref": "#/components/schemas/API.Interfaces.ISolver"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Interfaces.JSON_Objects.Gadget": {
+        "type": "object",
+        "properties": {
+          "color": {
+            "type": "string",
+            "nullable": true
+          },
+          "reductionFromIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "reductionToIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Interfaces.UtilCollectionGraph": {
+        "type": "object",
+        "properties": {
+          "getNodeList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/API.Interfaces.Graphs.Node"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "getEdgeList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/API.Interfaces.Graphs.Edge"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/API.Interfaces.Graphs.Node"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "edges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/API.Interfaces.Graphs.Edge"
+            },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Help class from graph operations, and for converting to API ready graph for visualizations on the front end"
+      },
+      "API.Problems.NPComplete.NPC_CLIQUE.CLIQUE": {
+        "type": "object",
+        "properties": {
+          "problemName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "formalDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultInstance": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "wikiName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultSolver": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_CLIQUE.Solvers.CliqueBruteForce"
+          },
+          "defaultVerifier": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_CLIQUE.Verifiers.CliqueVerifier"
+          },
+          "defaultVisualization": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_CLIQUE.Visualizations.CliqueDefaultVisualization"
+          },
+          "graph": {
+            "$ref": "#/components/schemas/API.Interfaces.UtilCollectionGraph"
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "edges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/System.Collections.Generic.KeyValuePair`2[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
+            },
+            "nullable": true
+          },
+          "k": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_CLIQUE.Solvers.CliqueBruteForce": {
+        "type": "object",
+        "properties": {
+          "solverName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "solverDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "timerHasExpired": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_CLIQUE.Verifiers.CliqueVerifier": {
+        "type": "object",
+        "properties": {
+          "verifierName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "verifierDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "certificate": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_CLIQUE.Visualizations.CliqueDefaultVisualization": {
+        "type": "object",
+        "properties": {
+          "visualizationName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "visualizationDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "visualizationType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "solver": {
+            "$ref": "#/components/schemas/API.Interfaces.ISolver"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_DM3.DM3": {
+        "type": "object",
+        "properties": {
+          "problemName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "formalDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultInstance": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "wikiName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultSolver": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_DM3.Solvers.ThreeDimensionalMatchingBruteForce"
+          },
+          "defaultVerifier": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_DM3.Verifiers.GenericVerifierDM3"
+          },
+          "defaultVisualization": {
+            "$ref": "#/components/schemas/API.DummyClasses.DummyVisualization"
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "x": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "y": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "z": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "m": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_DM3.Solvers.ThreeDimensionalMatchingBruteForce": {
+        "type": "object",
+        "properties": {
+          "solverName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "solverDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "timerHasExpired": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_DM3.Verifiers.GenericVerifierDM3": {
+        "type": "object",
+        "properties": {
+          "verifierName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "verifierDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "certificate": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_GRAPHCOLORING.GRAPHCOLORING": {
+        "type": "object",
+        "properties": {
+          "problemName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "formalDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultInstance": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "wikiName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultSolver": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_GRAPHCOLORING.Solvers.GraphColoringBruteForce"
+          },
+          "defaultVerifier": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_GRAPHCOLORING.Verifiers.GraphColoringVerifier"
+          },
+          "defaultVisualization": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_GRAPHCOLORING.Visualizations.GraphColoringDefaultVisualization"
+          },
+          "graph": {
+            "$ref": "#/components/schemas/API.Interfaces.UtilCollectionGraph"
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "edges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/System.Collections.Generic.KeyValuePair`2[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]"
+            },
+            "nullable": true
+          },
+          "nodeColoring": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "k": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "colors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_GRAPHCOLORING.Solvers.GraphColoringBruteForce": {
+        "type": "object",
+        "properties": {
+          "solverName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "solverDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "timerHasExpired": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_GRAPHCOLORING.Verifiers.GraphColoringVerifier": {
+        "type": "object",
+        "properties": {
+          "verifierName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "verifierDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "complexity": {
+            "type": "string",
+            "nullable": true
+          },
+          "certificate": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "coloring": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "k": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_GRAPHCOLORING.Visualizations.GraphColoringDefaultVisualization": {
+        "type": "object",
+        "properties": {
+          "visualizationName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "visualizationDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "visualizationType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "solver": {
+            "$ref": "#/components/schemas/API.Interfaces.ISolver"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_INTPROGRAMMING01.INTPROGRAMMING01": {
+        "type": "object",
+        "properties": {
+          "problemName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "formalDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultInstance": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "wikiName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultSolver": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_INTPROGRAMMING01.Solvers.IntegerProgrammingBruteForce"
+          },
+          "defaultVerifier": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_INTPROGRAMMING01.Verifiers.GenericVerifier01INTP"
+          },
+          "defaultVisualization": {
+            "$ref": "#/components/schemas/API.DummyClasses.DummyVisualization"
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "c": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "nullable": true
+          },
+          "d": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_INTPROGRAMMING01.Solvers.IntegerProgrammingBruteForce": {
+        "type": "object",
+        "properties": {
+          "solverName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "solverDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "timerHasExpired": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_INTPROGRAMMING01.Verifiers.GenericVerifier01INTP": {
+        "type": "object",
+        "properties": {
+          "verifierName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "verifierDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "certificate": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_CLIQUE.SipserReduceToCliqueStandard": {
+        "type": "object",
+        "properties": {
+          "reductionName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "reductionDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "gadgets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/API.Interfaces.JSON_Objects.Gadget"
+            },
+            "nullable": true
+          },
+          "reductionFrom": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.SAT3"
+          },
+          "reductionTo": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_CLIQUE.CLIQUE"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_DM3.GareyJohnson": {
+        "type": "object",
+        "properties": {
+          "reductionName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "reductionDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "gadgetMap": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "reductionFrom": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.SAT3"
+          },
+          "reductionTo": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_DM3.DM3"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_GRAPHCOLORING.KarpReduceGRAPHCOLORING": {
+        "type": "object",
+        "properties": {
+          "reductionName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "reductionDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "complexity": {
+            "type": "string",
+            "nullable": true
+          },
+          "gadgetMap": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "reductionFrom": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.SAT3"
+          },
+          "reductionTo": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_GRAPHCOLORING.GRAPHCOLORING"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_SAT3.ReduceTo.NPC_INTPROGRAMMING01.KarpIntProgStandard": {
+        "type": "object",
+        "properties": {
+          "reductionName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "reductionDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "gadgetMap": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          },
+          "reductionFrom": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.SAT3"
+          },
+          "reductionTo": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_INTPROGRAMMING01.INTPROGRAMMING01"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_SAT3.SAT3": {
+        "type": "object",
+        "properties": {
+          "problemName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "formalDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "problemDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultInstance": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "defaultSolver": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.Solvers.Sat3BacktrackingSolver"
+          },
+          "defaultVerifier": {
+            "$ref": "#/components/schemas/API.Problems.NPComplete.NPC_SAT3.Verifiers.SAT3Verifier"
+          },
+          "defaultVisualization": {
+            "$ref": "#/components/schemas/Sat3DefaultVisualization"
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "wikiName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "clauses": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          },
+          "literals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_SAT3.Solvers.Sat3BacktrackingSolver": {
+        "type": "object",
+        "properties": {
+          "solverName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "solverDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "timerHasExpired": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Problems.NPComplete.NPC_SAT3.Verifiers.SAT3Verifier": {
+        "type": "object",
+        "properties": {
+          "verifierName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "verifierDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "certificate": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "API.Tools.ApiParameters.MapSolution": {
+        "type": "object",
+        "properties": {
+          "problemFrom": {
+            "type": "string",
+            "description": "The problem instance.",
+            "nullable": true
+          },
+          "problemTo": {
+            "type": "string",
+            "description": "The reduced problem instance.",
+            "nullable": true
+          },
+          "problemFromSolution": {
+            "type": "string",
+            "description": "The solution to the problem.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "API parameters for the map solution routes."
+      },
+      "ContributorPortfolio": {
+        "type": "object",
+        "properties": {
+          "contributorName": {
+            "type": "string",
+            "description": "The contributor's full name",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "The contributor's email address",
+            "nullable": true
+          },
+          "education": {
+            "type": "string",
+            "description": "The contributor's education institution",
+            "nullable": true
+          },
+          "major": {
+            "type": "string",
+            "description": "The contributor's field of study or major",
+            "nullable": true
+          },
+          "bio": {
+            "type": "string",
+            "description": "A short biography describing the contributor's expertise",
+            "nullable": true
+          },
+          "problemsContributed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of all NP-Complete problems this contributor has worked on",
+            "nullable": true
+          },
+          "solversCreated": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of all algorithm solvers this contributor has created",
+            "nullable": true
+          },
+          "reductionsCreated": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of all problem reductions this contributor has created",
+            "nullable": true
+          },
+          "totalContributions": {
+            "type": "integer",
+            "description": "Total count of all contributions (problems + solvers + reductions)",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a contributor's complete profile with personal details and all contributions"
+      },
+      "Microsoft.AspNetCore.Mvc.ActionResult": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Sat3DefaultVisualization": {
+        "type": "object",
+        "properties": {
+          "visualizationName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "visualizationDefinition": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "visualizationType": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "solver": {
+            "$ref": "#/components/schemas/API.Interfaces.ISolver"
+          }
+        },
+        "additionalProperties": false
+      },
+      "System.Collections.Generic.KeyValuePair`2[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Verify": {
+        "type": "object",
+        "properties": {
+          "certificate": {
+            "type": "string",
+            "nullable": true
+          },
+          "problemInstance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
