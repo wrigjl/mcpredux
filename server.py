@@ -4,6 +4,7 @@ from typing import Optional
 from pathlib import Path
 from datetime import date
 import argparse
+import asyncio
 import httpx
 import json
 import secrets
@@ -229,6 +230,65 @@ async def visualize_problem(visualization: str, instance: str) -> str:
     return await _post("/ProblemProvider/visualize", instance, {"visualization": visualization})
 
 
+# ── Proxy mode ───────────────────────────────────────────────────────────────
+
+async def _proxy_main(url: str, token: str) -> None:
+    """Read JSON-RPC from stdin, forward to HTTP MCP server, write responses to stdout."""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+        "Accept": "application/json, text/event-stream",
+    }
+    session_id = None
+
+    loop = asyncio.get_event_loop()
+    reader = asyncio.StreamReader()
+    await loop.connect_read_pipe(
+        lambda: asyncio.StreamReaderProtocol(reader),
+        sys.stdin.buffer,
+    )
+
+    async with httpx.AsyncClient(timeout=60.0) as client:
+        while True:
+            line = await reader.readline()
+            if not line:
+                break
+            line = line.strip()
+            if not line:
+                continue
+
+            hdrs = {**headers}
+            if session_id:
+                hdrs["Mcp-Session-Id"] = session_id
+
+            try:
+                async with client.stream("POST", url, content=line, headers=hdrs) as resp:
+                    if sid := resp.headers.get("Mcp-Session-Id"):
+                        session_id = sid
+
+                    if resp.status_code == 202:
+                        continue  # notification accepted, no response body
+
+                    ct = resp.headers.get("content-type", "")
+                    if "text/event-stream" in ct:
+                        async for event_line in resp.aiter_lines():
+                            if event_line.startswith("data: "):
+                                data = event_line[6:].strip()
+                                if data and data != "[DONE]":
+                                    sys.stdout.buffer.write(data.encode() + b"\n")
+                                    sys.stdout.buffer.flush()
+                    else:
+                        body = (await resp.aread()).strip()
+                        if body:
+                            sys.stdout.buffer.write(body + b"\n")
+                            sys.stdout.buffer.flush()
+            except Exception as e:
+                err = {"jsonrpc": "2.0", "id": None,
+                       "error": {"code": -32603, "message": f"Proxy error: {e}"}}
+                sys.stdout.buffer.write(json.dumps(err).encode() + b"\n")
+                sys.stdout.buffer.flush()
+
+
 # ── Argument parsing ──────────────────────────────────────────────────────────
 
 def build_parser() -> argparse.ArgumentParser:
@@ -241,9 +301,19 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--mode",
-        choices=["stdio", "http"],
+        choices=["stdio", "http", "proxy"],
         default="stdio",
         help="Transport mode (default: stdio)",
+    )
+    parser.add_argument(
+        "--proxy-url",
+        metavar="URL",
+        help="MCP HTTP endpoint to proxy to (proxy mode)",
+    )
+    parser.add_argument(
+        "--proxy-token",
+        metavar="TOKEN",
+        help="Bearer token for the remote MCP server (proxy mode)",
     )
     parser.add_argument(
         "--host",
@@ -326,6 +396,14 @@ def main():
 
     if args.subcommand == "tokens":
         handle_tokens(args)
+        return
+
+    if args.mode == "proxy":
+        if not args.proxy_url:
+            build_parser().error("--proxy-url is required in proxy mode")
+        if not args.proxy_token:
+            build_parser().error("--proxy-token is required in proxy mode")
+        asyncio.run(_proxy_main(args.proxy_url, args.proxy_token))
         return
 
     _client = httpx.AsyncClient(base_url=args.base_url, timeout=30.0)
