@@ -1,25 +1,68 @@
 #!/usr/bin/env python3
 from mcp.server.fastmcp import FastMCP
 from typing import Optional
+from pathlib import Path
+from datetime import date
 import argparse
 import httpx
 import json
+import secrets
+import sys
+import uvicorn
 
-def _parse_args():
-    parser = argparse.ArgumentParser(description="Redux algorithms MCP server")
-    parser.add_argument(
-        "--base-url",
-        default="http://redux.portneuf.cose.isu.edu:27000",
-        metavar="URL",
-        help="Base URL of the Redux API server (default: %(default)s)",
-    )
-    return parser.parse_args()
+DEFAULT_BASE_URL = "http://redux.portneuf.cose.isu.edu:27000"
+DEFAULT_TOKEN_FILE = Path.home() / ".config" / "mcpredux" / "tokens.json"
 
-_args = _parse_args()
+# Set by main() before the server starts.
+_client: httpx.AsyncClient = None
 
 mcp = FastMCP("redux")
-_client = httpx.AsyncClient(base_url=_args.base_url, timeout=30.0)
 
+
+# ── Token file helpers ────────────────────────────────────────────────────────
+
+def load_tokens(path: Path) -> dict:
+    try:
+        return json.loads(path.read_text())
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+def save_tokens(path: Path, tokens: dict):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(tokens, indent=2) + "\n")
+
+
+# ── Auth middleware ───────────────────────────────────────────────────────────
+
+class BearerAuthMiddleware:
+    def __init__(self, app, token_file: Path):
+        self.app = app
+        self.token_file = token_file
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] == "http":
+            headers = dict(scope["headers"])
+            auth = headers.get(b"authorization", b"").decode()
+            if auth.startswith("Bearer "):
+                token = auth[len("Bearer "):]
+                if token in load_tokens(self.token_file):
+                    await self.app(scope, receive, send)
+                    return
+            await send({
+                "type": "http.response.start",
+                "status": 401,
+                "headers": [(b"content-type", b"application/json")],
+            })
+            await send({
+                "type": "http.response.body",
+                "body": b'{"error": "Unauthorized"}',
+                "more_body": False,
+            })
+        else:
+            await self.app(scope, receive, send)
+
+
+# ── HTTP helpers ──────────────────────────────────────────────────────────────
 
 async def _get(path: str, params: dict = None) -> str:
     try:
@@ -42,7 +85,7 @@ async def _post(path: str, body, params: dict = None) -> str:
         return f"Error: {e}"
 
 
-# ── Discovery ─────────────────────────────────────────────────────────────────
+# ── Discovery tools ───────────────────────────────────────────────────────────
 
 @mcp.tool()
 async def list_problems(category: str = "all") -> str:
@@ -96,7 +139,7 @@ async def get_info(interface: str) -> str:
     return await _get("/ProblemProvider/info", {"interface": interface})
 
 
-# ── Generation ────────────────────────────────────────────────────────────────
+# ── Generation tools ──────────────────────────────────────────────────────────
 
 @mcp.tool()
 async def generate_problem(
@@ -123,7 +166,7 @@ async def generate_problem(
                           {"n": n or 5, "density": density or 50, "k": k if k is not None else -1})
 
 
-# ── Core operations ───────────────────────────────────────────────────────────
+# ── Core operation tools ──────────────────────────────────────────────────────
 
 @mcp.tool()
 async def solve_problem(solver: str, instance: str) -> str:
@@ -158,5 +201,122 @@ async def visualize_problem(visualization: str, instance: str) -> str:
     return await _post("/ProblemProvider/visualize", instance, {"visualization": visualization})
 
 
+# ── Argument parsing ──────────────────────────────────────────────────────────
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Redux algorithms MCP server")
+    parser.add_argument(
+        "--base-url",
+        default=DEFAULT_BASE_URL,
+        metavar="URL",
+        help="Redux API base URL (default: %(default)s)",
+    )
+    parser.add_argument(
+        "--mode",
+        choices=["stdio", "http"],
+        default="stdio",
+        help="Transport mode (default: stdio)",
+    )
+    parser.add_argument(
+        "--host",
+        default="127.0.0.1",
+        metavar="HOST",
+        help="HTTP listen address (default: %(default)s)",
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=8000,
+        metavar="PORT",
+        help="HTTP listen port (default: %(default)s)",
+    )
+    parser.add_argument(
+        "--token-file",
+        type=Path,
+        default=DEFAULT_TOKEN_FILE,
+        metavar="FILE",
+        help="Bearer token store (default: %(default)s)",
+    )
+
+    sub = parser.add_subparsers(dest="subcommand")
+    tokens = sub.add_parser("tokens", help="Manage bearer tokens")
+    tok_sub = tokens.add_subparsers(dest="token_cmd")
+
+    gen = tok_sub.add_parser("generate", help="Generate and save a new token")
+    gen.add_argument("--description", default="", metavar="TEXT")
+
+    add = tok_sub.add_parser("add", help="Add an existing token")
+    add.add_argument("token")
+    add.add_argument("--description", default="", metavar="TEXT")
+
+    rm = tok_sub.add_parser("remove", help="Revoke a token")
+    rm.add_argument("token")
+
+    tok_sub.add_parser("list", help="List all tokens")
+
+    return parser
+
+
+# ── Token subcommand handler ──────────────────────────────────────────────────
+
+def handle_tokens(args):
+    path: Path = args.token_file
+    if args.token_cmd == "generate":
+        token = secrets.token_urlsafe(32)
+        tokens = load_tokens(path)
+        tokens[token] = {"description": args.description, "created": str(date.today())}
+        save_tokens(path, tokens)
+        print(token)
+
+    elif args.token_cmd == "add":
+        tokens = load_tokens(path)
+        tokens[args.token] = {"description": args.description, "created": str(date.today())}
+        save_tokens(path, tokens)
+        print("Token added.")
+
+    elif args.token_cmd == "remove":
+        tokens = load_tokens(path)
+        if args.token not in tokens:
+            print("Token not found.", file=sys.stderr)
+            sys.exit(1)
+        del tokens[args.token]
+        save_tokens(path, tokens)
+        print("Token removed.")
+
+    elif args.token_cmd == "list":
+        tokens = load_tokens(path)
+        if not tokens:
+            print("No tokens.")
+            return
+        for tok, meta in tokens.items():
+            desc = meta.get("description") or "(no description)"
+            created = meta.get("created", "?")
+            print(f"{tok[:12]}…  {created}  {desc}")
+
+    else:
+        print("Usage: server.py tokens {generate|add|remove|list}", file=sys.stderr)
+        sys.exit(1)
+
+
+# ── Entry point ───────────────────────────────────────────────────────────────
+
+def main():
+    global _client
+
+    args = build_parser().parse_args()
+
+    if args.subcommand == "tokens":
+        handle_tokens(args)
+        return
+
+    _client = httpx.AsyncClient(base_url=args.base_url, timeout=30.0)
+
+    if args.mode == "http":
+        app = BearerAuthMiddleware(mcp.streamable_http_app(), args.token_file)
+        uvicorn.run(app, host=args.host, port=args.port)
+    else:
+        mcp.run()
+
+
 if __name__ == "__main__":
-    mcp.run()
+    main()
