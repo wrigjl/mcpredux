@@ -2,8 +2,9 @@
 from mcp.server.fastmcp import FastMCP
 from typing import Optional
 import httpx
+import json
 
-REDUX_BASE = "http://redux.portneuf.cose.isu.edu:27000"
+REDUX_BASE = "http://localhost:27000"
 
 mcp = FastMCP("redux")
 _client = httpx.AsyncClient(base_url=REDUX_BASE, timeout=30.0)
@@ -19,7 +20,12 @@ async def _get(path: str, params: dict = None) -> str:
 
 async def _post(path: str, body, params: dict = None) -> str:
     try:
-        r = await _client.post(path, params=params, json=body)
+        r = await _client.post(
+            path,
+            params=params,
+            content=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+        )
         return r.text
     except Exception as e:
         return f"Error: {e}"
