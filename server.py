@@ -7,11 +7,12 @@ import argparse
 import httpx
 import json
 import secrets
+import sqlite3
 import sys
 import uvicorn
 
 DEFAULT_BASE_URL = "http://redux.portneuf.cose.isu.edu:27000"
-DEFAULT_TOKEN_FILE = Path.home() / ".config" / "mcpredux" / "tokens.json"
+DEFAULT_TOKEN_FILE = Path.home() / ".config" / "mcpredux" / "tokens.db"
 
 # Set by main() before the server starts.
 _client: httpx.AsyncClient = None
@@ -19,17 +20,44 @@ _client: httpx.AsyncClient = None
 mcp = FastMCP("redux")
 
 
-# ── Token file helpers ────────────────────────────────────────────────────────
+# ── Token DB helpers ──────────────────────────────────────────────────────────
 
-def load_tokens(path: Path) -> dict:
-    try:
-        return json.loads(path.read_text())
-    except (FileNotFoundError, json.JSONDecodeError):
-        return {}
-
-def save_tokens(path: Path, tokens: dict):
+def _db(path: Path) -> sqlite3.Connection:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(tokens, indent=2) + "\n")
+    conn = sqlite3.connect(path)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS tokens (
+            token       TEXT PRIMARY KEY,
+            description TEXT NOT NULL DEFAULT '',
+            created     TEXT NOT NULL
+        )
+    """)
+    conn.commit()
+    return conn
+
+def token_exists(path: Path, token: str) -> bool:
+    with _db(path) as conn:
+        return conn.execute(
+            "SELECT 1 FROM tokens WHERE token = ?", (token,)
+        ).fetchone() is not None
+
+def token_add(path: Path, token: str, description: str = "") -> None:
+    with _db(path) as conn:
+        conn.execute(
+            "INSERT OR REPLACE INTO tokens (token, description, created) VALUES (?, ?, ?)",
+            (token, description, str(date.today())),
+        )
+
+def token_remove(path: Path, token: str) -> bool:
+    with _db(path) as conn:
+        cur = conn.execute("DELETE FROM tokens WHERE token = ?", (token,))
+        return cur.rowcount > 0
+
+def token_list(path: Path) -> list:
+    with _db(path) as conn:
+        return conn.execute(
+            "SELECT token, description, created FROM tokens ORDER BY created, token"
+        ).fetchall()
 
 
 # ── Auth middleware ───────────────────────────────────────────────────────────
@@ -45,7 +73,7 @@ class BearerAuthMiddleware:
             auth = headers.get(b"authorization", b"").decode()
             if auth.startswith("Bearer "):
                 token = auth[len("Bearer "):]
-                if token in load_tokens(self.token_file):
+                if token_exists(self.token_file, token):
                     await self.app(scope, receive, send)
                     return
             await send({
@@ -263,35 +291,26 @@ def handle_tokens(args):
     path: Path = args.token_file
     if args.token_cmd == "generate":
         token = secrets.token_urlsafe(32)
-        tokens = load_tokens(path)
-        tokens[token] = {"description": args.description, "created": str(date.today())}
-        save_tokens(path, tokens)
+        token_add(path, token, args.description)
         print(token)
 
     elif args.token_cmd == "add":
-        tokens = load_tokens(path)
-        tokens[args.token] = {"description": args.description, "created": str(date.today())}
-        save_tokens(path, tokens)
+        token_add(path, args.token, args.description)
         print("Token added.")
 
     elif args.token_cmd == "remove":
-        tokens = load_tokens(path)
-        if args.token not in tokens:
+        if not token_remove(path, args.token):
             print("Token not found.", file=sys.stderr)
             sys.exit(1)
-        del tokens[args.token]
-        save_tokens(path, tokens)
         print("Token removed.")
 
     elif args.token_cmd == "list":
-        tokens = load_tokens(path)
-        if not tokens:
+        rows = token_list(path)
+        if not rows:
             print("No tokens.")
             return
-        for tok, meta in tokens.items():
-            desc = meta.get("description") or "(no description)"
-            created = meta.get("created", "?")
-            print(f"{tok[:12]}…  {created}  {desc}")
+        for tok, desc, created in rows:
+            print(f"{tok[:12]}…  {created}  {desc or '(no description)'}")
 
     else:
         print("Usage: server.py tokens {generate|add|remove|list}", file=sys.stderr)
