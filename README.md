@@ -33,9 +33,18 @@ python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 ```
 
-## Configuration
+## Modes
 
-Add to your `claude_desktop_config.json` (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
+### stdio (default)
+
+Runs as a local MCP server over stdin/stdout. Used when the client and
+server are on the same machine.
+
+```sh
+python server.py [--base-url URL]
+```
+
+Claude Desktop / Claude Code config:
 
 ```json
 {
@@ -48,7 +57,78 @@ Add to your `claude_desktop_config.json` (`~/Library/Application Support/Claude/
 }
 ```
 
+### http
+
+Runs as an HTTP server (streamable-HTTP MCP transport) suitable for
+deployment behind a reverse proxy such as nginx. Access is controlled
+by bearer tokens stored in a SQLite database.
+
+```sh
+python server.py --mode http [--host 127.0.0.1] [--port 8000] [--token-file FILE]
+```
+
+**Token management:**
+
+```sh
+# Generate a new token and print it
+python server.py tokens generate --description "Alice's laptop"
+
+# Add an existing token
+python server.py tokens add <token> --description "Bob's machine"
+
+# List all tokens (truncated)
+python server.py tokens list
+
+# Revoke a token
+python server.py tokens remove <token>
+```
+
+Tokens are stored at `~/.config/mcpredux/tokens.db` by default.
+
+Claude Code config (supports remote HTTP natively):
+
+```json
+{
+  "mcpServers": {
+    "redux": {
+      "type": "http",
+      "url": "https://your-server/mcp",
+      "headers": { "Authorization": "Bearer <token>" }
+    }
+  }
+}
+```
+
+### proxy
+
+Bridges Claude Desktop (stdio only) to a remote HTTP MCP server.
+Claude Desktop spawns this process locally; it forwards all traffic
+to the remote server with the bearer token attached.
+
+```sh
+python server.py --mode proxy --proxy-url https://your-server/mcp --proxy-token <token>
+```
+
+Claude Desktop config:
+
+```json
+{
+  "mcpServers": {
+    "redux": {
+      "command": "/path/to/mcpredux/.venv/bin/python",
+      "args": [
+        "/path/to/mcpredux/server.py",
+        "--mode", "proxy",
+        "--proxy-url", "https://your-server/mcp",
+        "--proxy-token", "<token>"
+      ]
+    }
+  }
+}
+```
+
 ## Dependencies
 
 - [mcp](https://github.com/modelcontextprotocol/python-sdk) — official Python MCP SDK (FastMCP)
 - [httpx](https://www.python-httpx.org) — async HTTP client
+- [uvicorn](https://www.uvicorn.org) — ASGI server (http mode)
