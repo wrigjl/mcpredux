@@ -57,6 +57,13 @@ catalog entry `problem-format-undeclared`.
   structured body `{error, problem, expected, received, detail}` where
   `expected` is the matching `instanceFormat`/`certificateFormat`.
   Verified live against the original gut-check certificate.
+- [x] Add `ReductionInputException` and extend the 400 pattern to
+  `/mapSolution`. `SipserReduceToSAT3` and `SipserReduceToCliqueStandard`
+  throw it on bad solution (and SipserReduceToSAT3 on bad source-
+  instance shape). Response body adds `reduction` field. Verified
+  2026-05-23 with the handoff Case A input (clique fed into the
+  forward mapper) → 400 naming the SAT3 certificate shape in
+  `expected`; LLM now has structured guidance to recover.
 - [ ] Backfill the remaining ~41 `Problems/NPComplete/*/*_Class.cs`
   classes. Mechanical: read each problem's verifier to determine the
   exact format, then write a short descriptive sentence with an embedded

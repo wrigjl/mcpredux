@@ -225,10 +225,10 @@ async def reduce_problem(reduction: str, instance: str) -> str:
 
 
 @mcp.tool()
-async def map_solution(reduction: str, solution: str, instance: str) -> str:
-    """Map a solution from the reduced problem back to the original problem."""
+async def reduce_certificate(reduction: str, certificate: str, instance: str) -> str:
+    """Apply the reduction's forward direction to a source-problem certificate, returning a target-problem certificate. Mirrors `reduce_problem` on the certificate side: both apply the named reduction in its source→target direction. To go target→source, use the inverse reduction (e.g. SipserReduceToSAT3 instead of SipserReduceToCliqueStandard); call `list_reductions(source=..., target=...)` to find it."""
     return await _post("/ProblemProvider/mapSolution", instance,
-                       {"reduction": reduction, "solution": solution})
+                       {"reduction": reduction, "solution": certificate})
 
 
 @mcp.tool()
