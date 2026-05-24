@@ -171,7 +171,7 @@ async def find_reduction_path(reducing_from: str, reducing_to: str) -> str:
 
 @mcp.tool()
 async def get_info(interface: str) -> str:
-    """Get detailed info about any named object: problem (e.g. SAT3), solver, verifier, or reduction."""
+    """Get detailed info about any named object: problem (e.g. SAT3), solver, verifier, or reduction. For problems, the response includes `instanceFormat` and `certificateFormat` describing the exact input shapes the solver/verifier expect — read these before constructing an instance or certificate."""
     return await _get("/ProblemProvider/info", {"interface": interface})
 
 
