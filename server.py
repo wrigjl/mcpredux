@@ -142,10 +142,17 @@ async def list_verifiers(problem: str, problem_type: str) -> str:
 
 
 @mcp.tool()
-async def list_reductions(problem: str, problem_type: str) -> str:
-    """List all reductions available from a given problem. problem_type: NPC, P, or NPHard."""
-    return await _get("/Navigation/Problem_ReductionsRefactor",
-                      {"chosenProblem": problem, "problemType": problem_type})
+async def list_reductions(source: Optional[str] = None, target: Optional[str] = None) -> str:
+    """Return the reduction graph as an adjacency map: from -> to -> [{className, endpoint, inputType, outputType}].
+    Omit both source and target to get the full graph for multi-step planning.
+    Pass source (e.g. "CLIQUE") to filter to edges originating there.
+    Pass target to filter to edges ending there. Both filters compose."""
+    params = {}
+    if source is not None:
+        params["source"] = source
+    if target is not None:
+        params["target"] = target
+    return await _get("/Navigation/Reductions", params or None)
 
 
 @mcp.tool()
