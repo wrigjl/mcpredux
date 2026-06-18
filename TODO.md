@@ -70,7 +70,7 @@ catalog entry `problem-format-undeclared`.
   example. Quantum problems may need extra care (qasm strings,
   measurement outcomes).
 - [ ] Extend the validate-and-throw pattern to the remaining verifiers
-  and constructors. Same shape as SAT3/CLIQUE; once §5's
+  and constructors. Same shape as SAT3/CLIQUE; once §4's
   `ReductionInputException` lands the patterns align across all three
   parse sites (problem, certificate, reduction input).
 
@@ -100,20 +100,7 @@ The GUI used to use a third (`reverseMappedSolution`) — now removed in
   the generic route. Same body-shape difference as the recent
   `reverseMappedSolution` fix.
 
-## 3. Delete the dead reverse-map code (already de-referenced)
-
-The `reverseMappedSolution` endpoint and method are no longer called by
-anything (GUI now uses `SipserReduceToSAT3` via the generic forward path).
-
-- [ ] Remove `[HttpPost("reverseMappedSolution")]` block in
-  `Problems/NPComplete/NPC_SAT3/SAT3_Controller.cs:80-93`.
-- [ ] Remove `reverseMapSolutions(...)` in
-  `Problems/NPComplete/NPC_SAT3/ReduceTo/NPC_CLIQUE/SipserReduceToCliqueStandard.cs:391-...`
-  once the endpoint is gone — orphan otherwise.
-- [ ] Remove the orphaned `using API.Problems.NPComplete.NPC_CLIQUE.Inherited`
-  import in `SAT3_Controller.cs` if it becomes unused.
-
-## 4. Audit reductions for inverse coverage
+## 3. Audit reductions for inverse coverage
 
 For each reduction with a `<Source>To<Target>` class, check whether a
 matching `<Target>To<Source>` inverse exists. Where it doesn't, the LLM can
@@ -143,7 +130,7 @@ For any inverse that isn't pedagogically meaningful, leave it out — but say
 so explicitly in the forward reduction's `reductionDefinition` so the LLM
 doesn't waste turns hunting for it.
 
-## 5. Validate at the controller boundary, fail with 400 + hint
+## 4. Validate at the controller boundary, fail with 400 + hint
 
 `SipserReduceToCliqueStandard.mapSolutions` threw `IndexOutOfRangeException`
 on a clique-shaped certificate because `Split(":")` returned a single
@@ -168,7 +155,7 @@ curl) gets opaque output.
 - [ ] Once 400 + structured body lands, the MCP server no longer needs to
   sniff response bodies for hidden errors. `is_error=true` becomes truthful.
 
-## 7. OpenAPI exposure
+## 5. OpenAPI exposure
 
 Swagger comments are already attached to controllers (`<param example=...>`,
 `<response>`). Make sure they survive into the served OpenAPI spec at
@@ -180,7 +167,7 @@ Swagger comments are already attached to controllers (`<param example=...>`,
   spec at startup and use the descriptions/examples as authoritative — so
   Python tool docstrings can stay one-liners and not duplicate API docs.
 
-## 8. Purge dead pre-`Refactor` Navigation controllers
+## 6. Purge dead pre-`Refactor` Navigation controllers
 
 Every `AdditionalControllers/Navigation/Nav_*.cs` file ships a pair: an old
 controller and its `*Refactor` replacement. The GUI, MCP server, and paper
@@ -213,7 +200,7 @@ Action items:
 - [ ] Audit `Nav_Problems.cs` — its controllers are already `*Refactor`-only
   (no pre-refactor pair), so just drop the suffix to match.
 
-## 9. Naming legibility (lower priority, paper-relevant)
+## 7. Naming legibility (lower priority, paper-relevant)
 
 `SipserReduceToSAT3` doesn't say what it reduces *from*. A reader has to
 look up the directory or read `reductionFrom`. Optional rename pass once §1
