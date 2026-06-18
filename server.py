@@ -94,24 +94,22 @@ class BearerAuthMiddleware:
 # ── HTTP helpers ──────────────────────────────────────────────────────────────
 
 async def _get(path: str, params: dict = None) -> str:
-    try:
-        r = await _client.get(path, params=params)
-        return r.text
-    except Exception as e:
-        return f"Error: {e}"
+    r = await _client.get(path, params=params)
+    if r.is_error:
+        raise RuntimeError(r.text)
+    return r.text
 
 
 async def _post(path: str, body, params: dict = None) -> str:
-    try:
-        r = await _client.post(
-            path,
-            params=params,
-            content=json.dumps(body).encode("utf-8"),
-            headers={"Content-Type": "application/json"},
-        )
-        return r.text
-    except Exception as e:
-        return f"Error: {e}"
+    r = await _client.post(
+        path,
+        params=params,
+        content=json.dumps(body).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+    )
+    if r.is_error:
+        raise RuntimeError(r.text)
+    return r.text
 
 
 # ── Discovery tools ───────────────────────────────────────────────────────────
