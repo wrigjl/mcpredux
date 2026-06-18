@@ -2,93 +2,19 @@
 from mcp.server.fastmcp import FastMCP
 from typing import Optional
 from pathlib import Path
-from datetime import date
 import argparse
 import asyncio
 import httpx
 import json
-import secrets
-import sqlite3
 import sys
 import uvicorn
 
 DEFAULT_BASE_URL = "http://redux.portneuf.cose.isu.edu:27000"
-DEFAULT_TOKEN_FILE = Path.home() / ".config" / "mcpredux" / "tokens.db"
 
 # Set by main() before the server starts.
 _client: httpx.AsyncClient = None
 
 mcp = FastMCP("redux")
-
-
-# ── Token DB helpers ──────────────────────────────────────────────────────────
-
-def _db(path: Path) -> sqlite3.Connection:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(path)
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS tokens (
-            token       TEXT PRIMARY KEY,
-            description TEXT NOT NULL DEFAULT '',
-            created     TEXT NOT NULL
-        )
-    """)
-    conn.commit()
-    return conn
-
-def token_exists(path: Path, token: str) -> bool:
-    with _db(path) as conn:
-        return conn.execute(
-            "SELECT 1 FROM tokens WHERE token = ?", (token,)
-        ).fetchone() is not None
-
-def token_add(path: Path, token: str, description: str = "") -> None:
-    with _db(path) as conn:
-        conn.execute(
-            "INSERT OR REPLACE INTO tokens (token, description, created) VALUES (?, ?, ?)",
-            (token, description, str(date.today())),
-        )
-
-def token_remove(path: Path, token: str) -> bool:
-    with _db(path) as conn:
-        cur = conn.execute("DELETE FROM tokens WHERE token = ?", (token,))
-        return cur.rowcount > 0
-
-def token_list(path: Path) -> list:
-    with _db(path) as conn:
-        return conn.execute(
-            "SELECT token, description, created FROM tokens ORDER BY created, token"
-        ).fetchall()
-
-
-# ── Auth middleware ───────────────────────────────────────────────────────────
-
-class BearerAuthMiddleware:
-    def __init__(self, app, token_file: Path):
-        self.app = app
-        self.token_file = token_file
-
-    async def __call__(self, scope, receive, send):
-        if scope["type"] == "http":
-            headers = dict(scope["headers"])
-            auth = headers.get(b"authorization", b"").decode()
-            if auth.startswith("Bearer "):
-                token = auth[len("Bearer "):]
-                if token_exists(self.token_file, token):
-                    await self.app(scope, receive, send)
-                    return
-            await send({
-                "type": "http.response.start",
-                "status": 401,
-                "headers": [(b"content-type", b"application/json")],
-            })
-            await send({
-                "type": "http.response.body",
-                "body": b'{"error": "Unauthorized"}',
-                "more_body": False,
-            })
-        else:
-            await self.app(scope, receive, send)
 
 
 # ── HTTP helpers ──────────────────────────────────────────────────────────────
@@ -237,10 +163,9 @@ async def visualize_problem(visualization: str, instance: str) -> str:
 
 # ── Proxy mode ───────────────────────────────────────────────────────────────
 
-async def _proxy_main(url: str, token: str) -> None:
+async def _proxy_main(url: str) -> None:
     """Read JSON-RPC from stdin, forward to HTTP MCP server, write responses to stdout."""
     headers = {
-        "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
         "Accept": "application/json, text/event-stream",
     }
@@ -316,11 +241,6 @@ def build_parser() -> argparse.ArgumentParser:
         help="MCP HTTP endpoint to proxy to (proxy mode)",
     )
     parser.add_argument(
-        "--proxy-token",
-        metavar="TOKEN",
-        help="Bearer token for the remote MCP server (proxy mode)",
-    )
-    parser.add_argument(
         "--host",
         default="127.0.0.1",
         metavar="HOST",
@@ -333,63 +253,7 @@ def build_parser() -> argparse.ArgumentParser:
         metavar="PORT",
         help="HTTP listen port (default: %(default)s)",
     )
-    parser.add_argument(
-        "--token-file",
-        type=Path,
-        default=DEFAULT_TOKEN_FILE,
-        metavar="FILE",
-        help="Bearer token store (default: %(default)s)",
-    )
-
-    sub = parser.add_subparsers(dest="subcommand")
-    tokens = sub.add_parser("tokens", help="Manage bearer tokens")
-    tok_sub = tokens.add_subparsers(dest="token_cmd")
-
-    gen = tok_sub.add_parser("generate", help="Generate and save a new token")
-    gen.add_argument("--description", default="", metavar="TEXT")
-
-    add = tok_sub.add_parser("add", help="Add an existing token")
-    add.add_argument("token")
-    add.add_argument("--description", default="", metavar="TEXT")
-
-    rm = tok_sub.add_parser("remove", help="Revoke a token")
-    rm.add_argument("token")
-
-    tok_sub.add_parser("list", help="List all tokens")
-
     return parser
-
-
-# ── Token subcommand handler ──────────────────────────────────────────────────
-
-def handle_tokens(args):
-    path: Path = args.token_file
-    if args.token_cmd == "generate":
-        token = secrets.token_urlsafe(32)
-        token_add(path, token, args.description)
-        print(token)
-
-    elif args.token_cmd == "add":
-        token_add(path, args.token, args.description)
-        print("Token added.")
-
-    elif args.token_cmd == "remove":
-        if not token_remove(path, args.token):
-            print("Token not found.", file=sys.stderr)
-            sys.exit(1)
-        print("Token removed.")
-
-    elif args.token_cmd == "list":
-        rows = token_list(path)
-        if not rows:
-            print("No tokens.")
-            return
-        for tok, desc, created in rows:
-            print(f"{tok[:12]}…  {created}  {desc or '(no description)'}")
-
-    else:
-        print("Usage: server.py tokens {generate|add|remove|list}", file=sys.stderr)
-        sys.exit(1)
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
@@ -399,23 +263,16 @@ def main():
 
     args = build_parser().parse_args()
 
-    if args.subcommand == "tokens":
-        handle_tokens(args)
-        return
-
     if args.mode == "proxy":
         if not args.proxy_url:
             build_parser().error("--proxy-url is required in proxy mode")
-        if not args.proxy_token:
-            build_parser().error("--proxy-token is required in proxy mode")
-        asyncio.run(_proxy_main(args.proxy_url, args.proxy_token))
+        asyncio.run(_proxy_main(args.proxy_url))
         return
 
     _client = httpx.AsyncClient(base_url=args.base_url, timeout=30.0)
 
     if args.mode == "http":
-        app = BearerAuthMiddleware(mcp.streamable_http_app(), args.token_file)
-        uvicorn.run(app, host=args.host, port=args.port)
+        uvicorn.run(mcp.streamable_http_app(), host=args.host, port=args.port)
     else:
         mcp.run()
 
